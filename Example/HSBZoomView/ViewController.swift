@@ -7,18 +7,45 @@
 //
 
 import UIKit
+import HSBZoomView
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
+	let imageView: UIImageView = {
+		let imageView = UIImageView(image: #imageLiteral(resourceName: "mario"))
+		imageView.contentMode = .scaleAspectFit
+		return imageView
+	}()
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+		
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
+extension ViewController: HSBZoomViewDataSource {
+	
+	func hsbZoomView(view: HSBZoomView) -> UIView {
+		
+		let imageView = UIImageView(image: #imageLiteral(resourceName: "mario"))
+		imageView.contentMode = .scaleAspectFit
+		return imageView
+	}
+}
+
+extension ViewController: HSBZoomViewDelegate {
+	
+	func hsbZoomViewWillBeginZooming(view: HSBZoomView) {
+		print("hsbZoomViewWillBeginZooming")
+	}
+	
+	func hsbZoomViewDidEndZooming(view: HSBZoomView) {
+		print("hsbZoomViewDidEndZooming")
+	}
 }
 
